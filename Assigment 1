@@ -1,0 +1,159 @@
+1. Create DATABASE
+mysql> CREATE DATABASE Riders
+    -> CREATE DATABASE Riders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE DATABASE Riders' at line 2
+mysql> CREATE DATABASE Riders;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| adventureworks     |
+| day1               |
+| dummy              |
+| employee           |
+| mydb               |
+| mysql              |
+| performance_schema |
+| riders             |
+| test               |
+| vita               |
+| vita_db            |
+| works              |
++--------------------+
+13 rows in set (0.00 sec)
+
+2.Change database to riders
+mysql> USE Riders;
+Database changed
+
+3.CREATE TABLE
+mysql> CREATE TABLE ProductCategory
+    -> (
+    -> ProductCategoryID int primary key,
+    -> Name varchar(20)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+4. INSERT VALUES INTO TABLES
+mysql> INSERT INTO ProductCategory VALUE (1,'Bikes');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO ProductCategory VALUE (2,'Accessior');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO ProductCategory VALUE (3,'components');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO ProductCategory VALUE (4,'parts');
+Query OK, 1 row affected (0.03 sec)
+
+5.DISPLAY TABLE
+mysql> SELECT*
+    ->  FROM ProductCategory;
++-------------------+------------+
+| ProductCategoryID | Name       |
++-------------------+------------+
+|                 1 | Bikes      |
+|                 2 | Accessior  |
+|                 3 | components |
+|                 4 | parts      |
++-------------------+------------+
+4 rows in set (0.00 sec)
+
+6.TYPING ERROR
+mysql> INSERT INTO ProductCategory VALUE (5,'Misc');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT*
+    ->  FROM ProductCategory;
++-------------------+------------+
+| ProductCategoryID | Name       |
++-------------------+------------+
+|                 1 | Bikes      |
+|                 2 | Accessior  |
+|                 3 | components |
+|                 4 | parts      |
+|                 5 | Misc       |
++-------------------+------------+
+5 rows in set (0.00 sec)
+7.UPDATE TABLE
+mysql> UPDATE ProductCategory
+    ->  SET Name = 'Miscellaneous'
+    ->  WHERE ProductCategoryID = 5;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT*
+    ->  FROM ProductCategory;
++-------------------+---------------+
+| ProductCategoryID | Name          |
++-------------------+---------------+
+|                 1 | Bikes         |
+|                 2 | Accessior     |
+|                 3 | components    |
+|                 4 | parts         |
+|                 5 | Miscellaneous |
++-------------------+---------------+
+5 rows in set (0.00 sec)
+8. DELETE ROWS
+mysql> INSERT INTO ProductCategory VALUE (5,'BERVEAGES');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT*
+    ->  FROM ProductCategory;
++-------------------+---------------+
+| ProductCategoryID | Name          |
++-------------------+---------------+
+|                 1 | Bikes         |
+|                 2 | Accessior     |
+|                 3 | components    |
+|                 4 | parts         |
+|                 5 | Miscellaneous |
+|                 5 | BERVEAGES     |
++-------------------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> DELETE FROM ProductCategory
+    ->  WHERE Name = 'Miscellaneous';
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT*
+    ->  FROM ProductCategory;
++-------------------+------------+
+| ProductCategoryID | Name       |
++-------------------+------------+
+|                 1 | Bikes      |
+|                 2 | Accessior  |
+|                 3 | components |
+|                 4 | parts      |
+|                 5 | BERVEAGES  |
++-------------------+------------+
+5 rows in set (0.00 sec)
+9.Purse Data
+mysql> SELECT*
+    ->  FROM ProductCategory;
++-------------------+-----------+
+| ProductCategoryID | Name      |
++-------------------+-----------+
+|                 1 | BERVEAGES |
+|                 2 | BERVEAGES |
+|                 3 | BERVEAGES |
+|                 4 | BERVEAGES |
+|                 5 | BERVEAGES |
++-------------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> TRUNCATE TABLE ProductCategory;
+Query OK, 0 rows affected (0.03 sec)
+
+10. REMOVE TABLE FROM DATABASE
+mysql> DROP TABLE ProductCategory;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SELECT*
+    ->  FROM ProductCategory;
+ERROR 1146 (42S02): Table 'riders.productcategory' doesn't exist
+mysql>
